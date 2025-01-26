@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 6</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+  <!-- Sign-Up -->
+  <div id="signup-page">
+    <h2>Sign Up</h2>
+    <form id="signup-form">
+      <input value='' onclick="this.value=''" type="text" id="name" placeholder="Name" required />
+      <input value='' onclick="this.value=''" type="date" id="dob" required />
+      <input value='' onclick="this.value=''" type="email" id="email" placeholder="Email" required />
+      <input value='' onclick="this.value=''" type="password" id="password" placeholder="Password" required />
+      <button type="submit">Sign Up</button>
+      <input type="reset" value="reset" />
+
+    </form>
+  </div>
+
+  <!-- Login -->
+  <div id="login-page">
+    <h2>Login</h2>
+    <form id="login-form">
+      <input value='' onclick="this.value=''" type="email" id="login-email" placeholder="Email" required />
+      <input value='' onclick="this.value=''" type="password" id="login-password" placeholder="Password" required />
+      <button type="submit">Login</button>
+      <input type="reset" value="reset" />
+    </form>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" style="display: none;">
+    <h1>Welcome, <span id="user-name"></span>!</h1>
+    <p id="message"></p>
+    <button id="logout">Logout</button>
+  </div>
+
+  
+  <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-database-compat.js"></script>
+
+  <script src="test.js"></script>
+  
+</body>
+</html>
