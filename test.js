@@ -28,7 +28,15 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
   console.log("Dob is", dob);
   console.log("Name is", name);
 
+  // Convert DOB to a Date object
+  const dobDate = new Date(dob);
+  const today = new Date();
 
+  // Check if the selected DOB is in the future
+  if (dobDate > today) {
+      alert("Date of birth cannot be in the future. Please enter a valid date.");
+      return; // Stop execution if the date is invalid
+  }
 
   try {
     const userInput = await auth.createUserWithEmailAndPassword(email, password);
