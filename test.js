@@ -41,6 +41,14 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
   try {
     const userInput = await auth.createUserWithEmailAndPassword(email, password);
     const userId = userInput.user.uid;
+
+    // const newUserRef = db.ref('users').push();
+    //     await newUserRef.set({
+    //         id: userId,  // Store user ID explicitly
+    //         name,
+    //         dob
+    //     });
+
     await db.ref('users/' + userId).set({ name, dob });
     alert('Sign-up successful! Log in, please!');
   } catch (error) {
@@ -54,10 +62,23 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   const email = document.getElementById('login-email').value;
   const password = document.getElementById('login-password').value;
 
+  // Check if fields are empty
+//   if (!email || !password) {
+//     alert("Please enter both email and password.");
+//     return;
+// }
+
   try {
     const userInput = await auth.signInWithEmailAndPassword(email, password);
     const userId = userInput.user.uid;
     const userSnapshot = await db.ref('users/' + userId).get();
+
+    // Check if user data exists in the database
+  //   if (!userSnapshot.exists()) {
+  //     alert("User not found. Please check your email and try again.");
+  //     return;
+  // }
+
     const user = userSnapshot.val();
 
     document.getElementById('signup-page').style.display = 'none';
@@ -91,8 +112,16 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     }
   } catch (error) {
     console.error(error.message);
+    // Handle authentication errors
+    if (error.code === 'auth/invalid-login-credentials') {
+      alert("Invalid login credentials. Please try again.");
+  } else {
+      alert("Login failed: " + error.message);
   }
-});
+}
+  
+  }
+);
 
 // Logout
 document.getElementById('logout').addEventListener('click', () => {
